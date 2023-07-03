@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            padding: 50px 100px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #input-container {
+            padding: 50px;
+            background-color: #1abc9c;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        label {
+            font-size: 22px;
+        }
+
+        .inp {
+            margin: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        @media only screen and (max-width: 547px) {
+            .inp {
+                width: 100px;
+            }
+        }
+
+        @media only screen and (max-width: 371px) {
+            .inp {
+                width: 60px;
+            }
+        }
+
+        @media only screen and (max-width: 280px) {
+            .inp {
+                width: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Temperature Converter</h1>
+    <div id="input-container">
+        <div class="input-box">
+            <select id="temp1">
+                <option value=0>celsius</option>
+                <option value=1>kelvin</option>
+                <option value=2>fahrenheit</option>
+                <option value=3>rankine</option>
+            </select>
+            <br>
+            <input type="number" id="cel" value="0" class="inp">
+        </div>
+        <div class="input-box">
+            <select id="temp2">
+                <option value=0>fahrenheit</option>
+                <option value=1>celsius</option>
+                <option value=2>kelvin</option>
+                <option value=3>rankine</option>
+            </select>
+            <br>
+            <input type="number" id="fah" value="32" class="inp">
+        </div>
+    </div>
+    <script>
+        //storing id of input boxes
+        let input1 = document.getElementById("cel");
+        let input2 = document.getElementById("fah");
+
+        //storing id of selection boxes
+        let temporary1 = document.getElementById("temp1");
+        let temporary2 = document.getElementById("temp2");
+
+        //change in box2 if there is any change in box1
+        function call1() {
+            let c = input1.value;
+            //From celsius to other
+            if (temp1.value == 0) {
+                let f = (c * 1.8) + 32;
+                let kel = (c * 1) + 273.15;
+                let r = (c * 1.8) + 491.67;
+
+
+                if (temp2.value == 0)
+                    c == "" ? input2.value = "" : input2.value = f;
+                else if (temp2.value == 1)
+                    c == "" ? input2.value = "" : input2.value = c;
+                else if (temp2.value == 2)
+                    c == "" ? input2.value = "" : input2.value = kel;
+                else if (temp2.value == 3)
+                    c == "" ? input2.value = "" : input2.value = r;
+
+                temporary2.addEventListener('change', function () {
+                    if (temp2.value == 0)
+                        c == "" ? input2.value = "" : input2.value = f;
+                    else if (temp2.value == 1)
+                        c == "" ? input2.value = "" : input2.value = c;
+                    else if (temp2.value == 2)
+                        c == "" ? input2.value = "" : input2.value = kel;
+                    else if (temp2.value == 3)
+                        c == "" ? input2.value = "" : input2.value = r;
+                })
+            }
+            //from kelvin to other
+            else if (temp1.value == 1) {
+                let f = (1.8 * (c - 273)) + 32;
+                let cels = (c * 1) - 273.15;
+                let r = (1.8 * c);
+
+
+                if (temp2.value == 0)
+                    c == "" ? input2.value = "" : input2.value = f;
+                else if (temp2.value == 1)
+                    c == "" ? input2.value = "" : input2.value = cels;
+                else if (temp2.value == 2)
+                    c == "" ? input2.value = "" : input2.value = c;
+                else if (temp2.value == 3)
+                    c == "" ? input2.value = "" : input2.value = r;
+
+                temporary2.addEventListener('change', function () {
+                    console.log("change occur");
+                    if (temp2.value == 0)
+                        c == "" ? input2.value = "" : input2.value = f;
+                    else if (temp2.value == 1)
+                        c == "" ? input2.value = "" : input2.value = cels;
+                    else if (temp2.value == 2)
+                        c == "" ? input2.value = "" : input2.value = c;
+                    else if (temp2.value == 3)
+                        c == "" ? input2.value = "" : input2.value = r;
+                })
+            }
+            //fahrenheit to other
+            else if (temp1.value == 2) {
+                let kel = ((c - 32) * (5 / 9)) + (273.15);
+                let cels = (c - 32) / 1.8;
+                let r = (c * 1) + 459.67;
+
+
+                if (temp2.value == 0)
+                    c == "" ? input2.value = "" : input2.value = c;
+                else if (temp2.value == 1)
+                    c == "" ? input2.value = "" : input2.value = cels;
+                else if (temp2.value == 2)
+                    c == "" ? input2.value = "" : input2.value = kel;
+                else if (temp2.value == 3)
+                    c == "" ? input2.value = "" : input2.value = r;
+
+                temporary2.addEventListener('change', function () {
+                    if (temp2.value == 0)
+                        c == "" ? input2.value = "" : input2.value = c;
+                    else if (temp2.value == 1)
+                        c == "" ? input2.value = "" : input2.value = cels;
+                    else if (temp2.value == 2)
+                        c == "" ? input2.value = "" : input2.value = kel;
+                    else if (temp2.value == 3)
+                        c == "" ? input2.value = "" : input2.value = r;
+                })
+            }
+            //rankine to others
+            else if (temp1.value == 3) {
+                let kel = (c / 1.8);
+                let cels = (c - 491.67) * (5 / 9);
+                let f = (c * 1) - 459.67;
+
+
+                if (temp2.value == 0)
+                    c == "" ? input2.value = "" : input2.value = f;
+                else if (temp2.value == 1)
+                    c == "" ? input2.value = "" : input2.value = cels;
+                else if (temp2.value == 2)
+                    c == "" ? input2.value = "" : input2.value = kel;
+                else if (temp2.value == 3)
+                    c == "" ? input2.value = "" : input2.value = c;
+
+                temporary2.addEventListener('change', function () {
+                    if (temp2.value == 0)
+                        c == "" ? input2.value = "" : input2.value = f;
+                    else if (temp2.value == 1)
+                        c == "" ? input2.value = "" : input2.value = cels;
+                    else if (temp2.value == 2)
+                        c == "" ? input2.value = "" : input2.value = kel;
+                    else if (temp2.value == 3)
+                        c == "" ? input2.value = "" : input2.value = c;
+                })
+            }
+        }
+        //On taking input from users in box1
+        input1.addEventListener('input', call1);
+        temporary2.addEventListener('change', call1);
+
+        //end of changes made in box 2 which will effect in box 1 
+
+        //start of changes made in box1 which will effect in box 2
+
+        function call2() {
+            let c = input2.value;
+            //From celsius to other
+            if (temp2.value == 1) {
+                let f = (c * 1.8) + 32;
+                let kel = (c * 1) + 273.15;
+                let r = (c * 1.8) + 491.67;
+
+
+                if (temp1.value == 2)
+                    c == "" ? input1.value = "" : input1.value = f;
+                else if (temp1.value == 0)
+                    c == "" ? input1.value = "" : input1.value = c;
+                else if (temp1.value == 1)
+                    c == "" ? input1.value = "" : input1.value = kel;
+                else if (temp1.value == 3)
+                    c == "" ? input1.value = "" : input1.value = r;
+
+                temporary1.addEventListener('change', function () {
+                    if (temp1.value == 2)
+                        c == "" ? input1.value = "" : input1.value = f;
+                    else if (temp1.value == 0)
+                        c == "" ? input1.value = "" : input1.value = c;
+                    else if (temp1.value == 1)
+                        c == "" ? input1.value = "" : input1.value = kel;
+                    else if (temp1.value == 3)
+                        c == "" ? input1.value = "" : input1.value = r;
+                })
+            }
+            //from kelvin to other
+            else if (temp2.value == 1) {
+                let f = (1.8 * (c - 273)) + 32;
+                let cels = (c * 1) - 273.15;
+                let r = (1.8 * c);
+
+
+                if (temp1.value == 2)
+                    c == "" ? input1.value = "" : input1.value = f;
+                else if (temp1.value == 0)
+                    c == "" ? input1.value = "" : input1.value = cels;
+                else if (temp1.value == 1)
+                    c == "" ? input1.value = "" : input1.value = c;
+                else if (temp1.value == 3)
+                    c == "" ? input1.value = "" : input1.value = r;
+
+                temporary1.addEventListener('change', function () {
+                    console.log("change occur");
+                    if (temp1.value == 2)
+                        c == "" ? input1.value = "" : input1.value = f;
+                    else if (temp1.value == 0)
+                        c == "" ? input1.value = "" : input1.value = cels;
+                    else if (temp1.value == 1)
+                        c == "" ? input1.value = "" : input1.value = c;
+                    else if (temp1.value == 3)
+                        c == "" ? input1.value = "" : input1.value = r;
+                })
+            }
+            //fahrenheit to other
+            else if (temp2.value == 0) {
+                let kel = ((c - 32) * (5 / 9)) + (273.15);
+                let cels = (c - 32) / 1.8;
+                let r = (c * 1) + 459.67;
+
+
+                if (temp1.value == 2)
+                    c == "" ? input1.value = "" : input1.value = c;
+                else if (temp1.value == 0)
+                    c == "" ? input1.value = "" : input1.value = cels;
+                else if (temp1.value == 1)
+                    c == "" ? input1.value = "" : input1.value = kel;
+                else if (temp1.value == 3)
+                    c == "" ? input1.value = "" : input1.value = r;
+
+                temporary1.addEventListener('change', function () {
+                    if (temp1.value == 2)
+                        c == "" ? input1.value = "" : input1.value = c;
+                    else if (temp1.value == 0)
+                        c == "" ? input1.value = "" : input1.value = cels;
+                    else if (temp1.value == 1)
+                        c == "" ? input1.value = "" : input1.value = kel;
+                    else if (temp1.value == 3)
+                        c == "" ? input1.value = "" : input1.value = r;
+                })
+            }
+            //rankine to others
+            else if (temp2.value == 3) {
+                let kel = (c / 1.8);
+                let cels = (c - 491.67) * (5 / 9);
+                let f = (c * 1) - 459.67;
+
+
+                if (temp1.value == 2)
+                    c == "" ? input1.value = "" : input1.value = f;
+                else if (temp1.value == 0)
+                    c == "" ? input1.value = "" : input1.value = cels;
+                else if (temp1.value == 1)
+                    c == "" ? input1.value = "" : input1.value = kel;
+                else if (temp1.value == 3)
+                    c == "" ? input1.value = "" : input1.value = c;
+
+                temporary1.addEventListener('change', function () {
+                    if (temp1.value == 2)
+                        c == "" ? input1.value = "" : input1.value = f;
+                    else if (temp1.value == 0)
+                        c == "" ? input1.value = "" : input1.value = cels;
+                    else if (temp1.value == 1)
+                        c == "" ? input1.value = "" : input1.value = kel;
+                    else if (temp1.value == 3)
+                        c == "" ? input1.value = "" : input1.value = c;
+                })
+            }
+        }
+        //on taking input from box2
+        input2.addEventListener('input', call2);
+        temporary1.addEventListener('change', call1);
+
+    </script>
+</body>
+
+</html>
